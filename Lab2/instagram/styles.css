@@ -1,0 +1,162 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+#phone{
+    height:690px;
+    width: auto;
+    margin: 0px 20px 0px 60px;
+}
+
+#container{ 
+    height: 850px;
+    width:auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+
+#instagram{
+    /* border: 1.5px solid purple; */
+    /* height:90px; */
+    max-width: 80%;   
+    height: 70px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+
+}
+#form{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form > input[type=text], #form > input[type=password]{
+    height:40%;
+    margin: 8px 0;
+    border-radius:3px;
+    padding: 15px 10px 15px 10px;
+    font-size: 16px;
+    width:95%;
+    border: 1.5px solid #d9dadb;
+    background-color:#f7f7f7;
+}
+
+#form > input[type=button]{
+    margin-top:10px;
+    font-weight:bold;
+    color:white;
+    width:95%;
+    border: none;
+    border-radius:10px;
+    height:40px;
+    font-size: 17px;
+    padding: 10px 10px 10px 10px;
+    background-color:#57abff;
+}
+
+#separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+#separator p {
+    position: relative;
+    margin: 0 20px;
+    font-weight: bold;
+    font-family:arial;
+    color: #939292;
+}
+  
+#separator::before,
+#separator::after {
+    content: '';
+    background-color: #d9dadb;
+    width: 145px;       
+    height: 1px;
+}
+
+#first{
+    height:690px;
+}
+
+#login{
+    width: 450px;
+    border: 1.5px solid#d9dadb;
+    padding: 40px 40px 20px 40px;
+    min-height: 690px;
+}
+
+#facebook{
+    height:30px;
+}
+
+#facebook-login{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    font-size:17px;
+    color:#4ba2f9;
+    font-weight:bold;
+}
+
+
+#forgot-password a{
+    color:#00376B;
+    font-size:17px;
+    text-decoration: none;
+}
+
+#forgot-password{
+    margin:20px;
+    text-align: center;
+}
+
+#no-account {
+    border: 1.5px solid #d9dadb;
+    height:70px;
+    width:450px;
+    margin-top:15px;
+    text-align: center;
+    padding: 25px;
+    
+}
+
+#no-account p, #get-app p{
+    font-size:17px;
+}
+
+
+#no-account span{
+    color:#4ba2f9;
+    font-weight:bold;
+}
+
+#get-app{
+    height:50px;
+    width:450px;
+    text-align: center;
+    padding:15px;
+}
+
+#images{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+}
+
+#images > img{
+    height: 45px;
+    width: 155px;
+}
+

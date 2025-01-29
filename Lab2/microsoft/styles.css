@@ -1,0 +1,73 @@
+body{
+    font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin:0;
+}
+
+
+#navbar{
+    padding: 10px 70px 10px 70px;
+   
+}
+
+.navdiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo > img {
+    height: 27px;
+    width:auto;
+    margin-left: 20px;
+}
+
+li{
+    list-style: none;
+    display: inline-block;
+    margin-right:15px;
+}
+
+ul{
+    margin-left:-130px;
+}
+
+.icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon > img{
+    height: 25px;
+    width:auto;
+    margin-right: 10px;
+    margin-left: 5px;
+}
+
+#profile{
+    height: 45px;
+}
+
+
+#banner{
+    background-color: #0067b8!important;
+    font-size:16px;
+    font-weight:bold;
+    color:white;
+    height: 50px;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    
+}
+
+#image {
+    height:400px;
+
+    background-image: url(./assets/copilot.png)
+}
