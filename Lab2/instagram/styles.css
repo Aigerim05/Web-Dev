@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body{
+    position:relative;
+}
+
 #phone{
     height:690px;
     width: auto;
@@ -21,8 +25,6 @@
 }
 
 #instagram{
-    /* border: 1.5px solid purple; */
-    /* height:90px; */
     max-width: 80%;   
     height: 70px;
     margin-top: 15px;
@@ -160,3 +162,21 @@
     width: 155px;
 }
 
+footer{
+   
+    position:absolute;
+    width: 100%;
+    padding: 20px;
+    color: #a6a8aa;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    word-spacing: 12px;
+    line-height: 30px;
+    text-align: center;
+    top:830px;
+}
+
+#contact-info{
+    margin-bottom: 70px;
+}

@@ -8,14 +8,12 @@ body{
     background-color: #f0f2f5;
     position:relative;
     height: 115vh;
-
 }
 
 
 #container{
     height:700px;
     gap:20px;
-    /* border:  solid black; */
     display:flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +22,6 @@ body{
 
 #label{
     position:relative;
-    /* border: solid red; */
     height:350px;
     width:600px;
     display:inline;
@@ -38,7 +35,6 @@ body{
     color:#1c1e21;
     
     letter-spacing: normal;
-    /* border:  solid purple; */
     position:absolute;
     top:120px;
     left:30px;
@@ -49,7 +45,6 @@ body{
 #facebook{
     width:auto;
     height:120px;
-    /* border: solid green; */
     position:absolute;
     top:10px;
 }
@@ -70,7 +65,6 @@ body{
     padding: 10px 10px 20px 10px;
     align-items: center;
     box-shadow: 0 5px 5px 3px gainsboro;
-    /* border:solid #1877F2; */
     top:-5px;
 }
 
@@ -131,4 +125,20 @@ p{
     font-size: 15px;
     position:absolute;
     bottom :-55px;
+}
+
+
+footer{
+    background-color: #ffffff;
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    color: #a6a8aa;
+    font-size: 14px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    word-spacing: 12px;
+    line-height: 30px;
 }
