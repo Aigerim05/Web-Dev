@@ -5,7 +5,7 @@ value = String(value); // now value is a string "true"
 alert(typeof value); // string
 
 
-alert( "6" / "2" ); // 3, strings are converted to numbers
+alert( "6" / "2" ); // 3
 
 let str = "123";
 alert(typeof str); // string
