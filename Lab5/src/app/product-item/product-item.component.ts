@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ProductItemComponent {
   @Input() product: any;
-  @Output() remove = new EventEmitter<void>();
+  @Output() remove = new EventEmitter();
 
   onLike() {
     this.product.likes++;

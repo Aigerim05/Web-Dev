@@ -11,16 +11,12 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductListComponent {
   @Input() products: any[] = [];
-  @Input() categoryId: number | null = null;
+  @Input() categoryId!: number;
   @Output() removeProduct = new EventEmitter<{ categoryId: number, productId: number }>();
 
   onRemoveProduct(productId: number) {
     if (this.categoryId !== null) {
       this.removeProduct.emit({ categoryId: this.categoryId, productId });
     }
-  }
-
-  onLikeProduct(product: any) {
-    product.likes++;
   }
 }

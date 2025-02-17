@@ -41,7 +41,7 @@ export class AppComponent {
     }
   ];
 
-  selectedCategoryId: number | null = null;
+  selectedCategoryId: number = 1;
   selectedCategoryProducts: any[] = [];
 
   selectCategory(id: number) {
@@ -58,7 +58,7 @@ export class AppComponent {
     const category = this.categories.find(c => c.id === event.categoryId);
     if (category) {
       category.products = category.products.filter(p => p.id !== event.productId);
-      this.selectCategory(this.selectedCategoryId!);
+      this.selectCategory(this.selectedCategoryId);
     }
   }
   
