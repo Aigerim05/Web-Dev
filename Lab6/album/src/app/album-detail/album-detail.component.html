@@ -1,0 +1,18 @@
+<div *ngIf="loaded; else loadingBlock">
+    <h3>Album #{{album.id}}</h3>
+
+    <label>title:</label>
+    <input [(ngModel)]="album.title"/>
+
+    <button (click)="save()">Save</button>
+    <button (click)="return()">Return</button>
+
+    <a [routerLink]="['/albums', album.id, 'photos']">Photos</a>
+</div>
+
+
+<ng-template #loadingBlock>
+    Album detail is loading ...
+</ng-template>
+
+

@@ -1,0 +1,12 @@
+<div *ngIf="loaded; else loadingBlock">
+    <h3>Photos</h3>
+    <div *ngFor="let photo of photos">
+        <img [src]="photo.thumbnailUrl" />
+    </div>
+    <button (click)="return()">Return</button>
+</div>
+
+
+<ng-template #loadingBlock>
+    Photos are loading...
+  </ng-template>
