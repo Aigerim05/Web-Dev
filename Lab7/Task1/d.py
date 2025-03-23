@@ -74,5 +74,10 @@
 #     print(num, end=" ")
 
 
+num = input()
+sum = 0
+a = list(map(int, num.split()))
+for i in a:
+    sum += i
 
 
