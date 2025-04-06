@@ -9,5 +9,7 @@ urlpatterns = [
     path('companies/<int:id>/vacancies/', vacancies_list),
     path('vacancies/<int:id>/', get_vacancy),
     path('vacancies/top_ten/', top_ten),
+    path('positions/', position_list),
+    path('positions/<int:id>/', get_position),
 
 ]

@@ -1,0 +1,10 @@
+<p>Name: {{company.name}}</p>
+
+<p>Description: {{company.description}}</p>
+
+
+<p>City: {{company.city}}</p>
+
+<p>Address: {{company.address}}</p>
+
+<a [routerLink]="['/companies', company.id, 'vacancies']">Vacancies</a>
