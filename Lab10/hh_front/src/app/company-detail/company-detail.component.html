@@ -1,10 +1,11 @@
-<p>Name: {{company.name}}</p>
-
-<p>Description: {{company.description}}</p>
+<div *ngIf="isLoading">Loading...</div> 
 
 
-<p>City: {{company.city}}</p>
+<div *ngIf="!isLoading">
+  <p>Name: {{ company.name }}</p>
+  <p>Description: {{ company.description }}</p>
+  <p>City: {{ company.city }}</p>
+  <p>Address: {{ company.address }}</p>
 
-<p>Address: {{company.address}}</p>
-
-<a [routerLink]="['/companies', company.id, 'vacancies']">Vacancies</a>
+  <a [routerLink]="['/companies', company.id, 'vacancies']">Vacancies</a>
+</div>

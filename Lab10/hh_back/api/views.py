@@ -8,67 +8,64 @@ from django.shortcuts import render
 from .serializers import CompanySerializer, PositionSerializer, VacancySerializer
 
 from .models import Company, Position, Vacancy
+from rest_framework.decorators import api_view
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.exceptions import NotFound
 
-@csrf_exempt
+@api_view(http_method_names=["GET", "POST"]) 
 def companies_list(request):
     if request.method == "GET":
         companies = Company.objects.all()
-        company_json = [c.to_json() for c in companies]
-        return JsonResponse(company_json, safe=False)
-
+        serializer = CompanySerializer(companies, many=True)
+        return Response(serializer.data)
     elif request.method == "POST":
-        data = json.loads(request.body)
-
-        try:
-            company = Company.objects.create(
-                name=data["name"],
-                description=data["description"],
-                city=data["city"],
-                address=data["address"]
-            )
-        except Exception as e:
-            return JsonResponse({"error":str(e)})
-        return JsonResponse(company.to_json(), status=201)
+        data = request.data
+        serializer = CompanySerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+    
 
 
-@csrf_exempt
+@api_view(http_method_names=["GET", "PUT", "DELETE"]) 
 def get_company(request, id):
     try:
         company = Company.objects.get(id=id)
     except Company.DoesNotExist as e:
-        return JsonResponse({"error" : str(e)}, status=404)
+        return Response({"error" : str(e)}, status=status.HTTP_404_NOT_FOUND)
          
     if request.method == "GET":
-        return JsonResponse(company.to_json(), safe=False)
+        serializer = CompanySerializer(company)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
     elif request.method == "PUT":
-        data = json.loads(request.body)
+        serializer = CompanySerializer(instance=company, data=request.data)
 
-        try:
-            company.name = data.get("name", company.name)
-            company.description = data.get("description", company.description)
-            company.city = data.get("city", company.city)
-            company.address = data.get("address", company.address)
-            company.save()
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
-
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == "DELETE":
         company.delete()
-        return JsonResponse({"message": "Company deleted successfully."}, status=200)
+        return Response({"message": "Company deleted successfully."}, status=status.HTTP_200_OK)
 
-@method_decorator(csrf_exempt, name='dispatch')
-class VacanciesView(View):
-    def get(self, request, id):
+
+class VacanciesAPIView(APIView):
+    def get_object(self, id):
         try:
-            company = Company.objects.get(id=id)
+            return Company.objects.get(id=id)
         except Company.DoesNotExist as e:
-            return JsonResponse({"error" : str(e)}, status=404)
-            
-        vacancies = Vacancy.objects.filter(company=company) 
+            raise NotFound(detail="Vacancy not found", code=404)
+        
+    def get(self, request, id):
+        vacancies = Vacancy.objects.filter(company=self.get_object(id)) 
         serializer = VacancySerializer(vacancies, many=True)  
-        return JsonResponse(serializer.data, safe=False, status=200)
+        return Response(serializer.data, status=status.HTTP_200_OK)
   
     def post(self,request, id):
         try:
@@ -85,42 +82,35 @@ class VacanciesView(View):
         
 
 
-@method_decorator(csrf_exempt, name='dispatch')  
-class VacancyDetailView(View):
-    def get(self, resuest, id):
-        try:
-            vacancy = Vacancy.objects.get(id=id)
-        except Vacancy.DoesNotExist as e:
-            return JsonResponse({"error": str(e)}, status=404)
 
+class VacancyDetailAPIView(APIView):
+
+    def get_object(self, id):
+        try:
+            return Vacancy.objects.get(id=id)
+        except Vacancy.DoesNotExist as e:
+            return Response({"error" : str(e)}, status=status.HTTP_404_NOT_FOUND)
+        
+
+    def get(self, request, id):
+        vacancy = self.get_object(id)
         serializer = VacancySerializer(vacancy)
-        return JsonResponse(serializer.data, safe=False, status=200)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
     def put(self, request, id):
-        try:
-            vacancy = Vacancy.objects.get(id=id)
-        except Vacancy.DoesNotExist as e:
-            return JsonResponse({"error": str(e)}, status=404)
+        vacancy = self.get_object(id)
 
-        data = json.loads(request.body)
+        serializer = VacancySerializer(instance = vacancy, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+    
 
-        try:
-            vacancy.name = data.get("name", vacancy.name)
-            vacancy.description = data.get("description", vacancy.description)
-            vacancy.salary = data.get("salary", vacancy.salary)
-            vacancy.company = data.get("company", vacancy.company)
-            vacancy.position = data.get("position", vacancy.position)
-            vacancy.save()
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
     def delete(self, request, id):
-        try:
-            vacancy = Vacancy.objects.get(id=id)
-        except Vacancy.DoesNotExist as e:
-            return JsonResponse({"error": str(e)}, status=404)
-        
+        vacancy = self.get_object(id)
         vacancy.delete()
-        return JsonResponse({"message": "vacancy deleted"}, status=200)
+        return Response({"message": "vacancy deleted"}, status=status.HTTP_200_OK)
 
 
 
