@@ -15,7 +15,7 @@ export class CompanyDetailComponent {
   isLoading = true; 
 
   constructor(private route: ActivatedRoute,
-    private postsService: CompaniesService) {
+    private companiesService: CompaniesService) {
 
 }
 
@@ -25,7 +25,7 @@ ngOnInit() {
   const companyID = Number(params.get('id'));
 
 
-  this.postsService.getCompany(companyID).subscribe((company: Company) => {
+  this.companiesService.getCompany(companyID).subscribe((company: Company) => {
   this.company = company;
   this.isLoading = false;
 

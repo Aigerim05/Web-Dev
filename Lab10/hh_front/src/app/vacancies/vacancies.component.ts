@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vacancies',
@@ -15,7 +14,6 @@ export class VacanciesComponent {
   constructor(
     private route: ActivatedRoute,
     private client: HttpClient,
-    private router: Router
   ){}
 
   ngOnInit(): void{
